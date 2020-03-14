@@ -1,0 +1,50 @@
+<%- include("../partials/header") %>
+
+<div class="container ord-show-div">
+	<div class="row">
+		<div class="col-lg-7">
+			<div class="border m-4 p-3">
+				<h6 class="float-right"><%= order.date.toDateString() %></h6>
+				<h6>Order No - <%= order.no %></h6>
+				<% order.checkoutCart.items.forEach(function(cartItem){ %>
+					<hr>
+					<div class="row">
+						<div class="col-3">
+							<a href="/products/<%= cartItem.product._id %>">
+								<div class="resp-img order" style="background-image:url('<%= cartItem.product.image %>')"></div>
+							</a>
+						</div>
+						<div class="col-9">
+							<a href="/products/<%= cartItem.product._id %>">
+								<div class="a"><%= cartItem.product.name %></div>
+							</a>
+							<div>
+								₹<%= cartItem.product.price %>
+								<span class="mrp mx-2">₹<%= cartItem.product.mrp %></span>
+								<span class="disc"><%= cartItem.product.discount %>% off</span>
+							</div>
+							<div>Quantity - <%= cartItem.qty %></div>
+						</div>
+					</div> 
+				<% }); %>
+			</div>
+		</div>
+		<div class="col-lg-5">
+			<div class="border m-4 p-3">
+				<h6>Shipping Details</h6>
+				<hr>
+				<h6><%= order.name %></h6>
+				<div><%= order.address.addr %></div>
+				<div><%= order.address.city %>, <%= order.address.state %></div>
+				<div><%= order.address.pin %></div>
+				<div>Phone Number: <%= order.contactNo %></div>
+				<hr>
+				<h6 class="float-right">₹<%= order.checkoutCart.total %></h6>
+				<h6>Total Amount</h6>
+				<div>Payment Method: <%= order.paymentMode %></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,57 @@
+<%- include("../partials/header") %>
+
+<div class="container cart-show">
+	<div class="border px-3 pt-0">
+		<% user.cart.items.forEach(function(cartItem){ %>
+			<div class="mb-3">	
+				<hr class="mt-0">
+				<div class="row">
+					<div class="col-3">
+						 <a href="/products/<%= cartItem.product._id %>">
+						 	<div class="resp-img cart" style="background-image:url('<%= cartItem.product.image %>')"></div>
+						 </a>
+					</div>
+					<div class="col-9">
+						<a href="/products/<%= cartItem.product._id %>">
+							<div class="a"><%= cartItem.product.name %></div>
+						</a>
+						<div>
+							₹<%= cartItem.product.price %>
+							<span class="mrp mx-2">₹<%= cartItem.product.mrp %></span>
+							<span class="disc"><%= cartItem.product.discount %>% off</span>
+						</div>
+						<div class="float-right">
+							<a href="/cart/<%= cartItem.product._id %>/rem">Remove</a> 
+						</div>
+						<div>
+							Quantity 
+							<a href="/cart/<%= cartItem.product._id %>/dec">
+								<i class="fas fa-minus-circle"></i>
+							</a> 
+							<%= cartItem.qty %> 
+							<a href="/cart/<%= cartItem.product._id %>/inc">
+								<i class="fas fa-plus-circle"></i>
+							</a>
+						</div>
+					</div>
+				</div> 
+			</div>
+		<% }); %>
+		</div>
+		<% if(user.cart.items.length>0){ %>
+			<div class="border p-3 my-4">
+				<h5 class="float-right">₹<%=user.cart.total%></h5>
+				<h5>Total Payable</h5>
+			</div>
+			<a href="/checkout" class="btn btn-success float-right">Proceed to Checkout</a>
+		<% } else { %>		
+			<div class="text-center screen-center-cart">
+				<img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" class="empty-cart-img">
+				<h5>You have nothing in your cart!!</h5>
+				<a href="/products" class="btn btn-success">Start Shopping</a>
+			</div>
+		<% } %>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

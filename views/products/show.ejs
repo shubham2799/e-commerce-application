@@ -1,0 +1,64 @@
+<%- include("../partials/header") %>
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="resp-img pro-show" style="background-image:url('<%= product.image %>')"></div>
+		</div>
+		<div class="col-md-7">
+			<h2><%= product.name %></h2>
+			<% if(currentUser && currentUser.username=='admin') { %>
+				<div>
+					<a href="/products/<%= product._id %>/edit"><button class="btn btn-warning">Edit</button></a>
+					<form action="/products/<%= product._id %>?_method=DELETE" method="POST" class="d-inline-block">
+						<button class="btn btn-danger">Remove</button>
+					</form>
+				</div>
+			<% } else { %>
+				<div class="m-5"></div>
+			<% } %>
+			<div class="card p-3 my-3">
+				<h5>Description</h5>
+				<p>This will be the product description.</p>
+			</div>
+			<h5>
+				₹<%= product.price %>
+				<span class="mrp mx-2">₹<%= product.mrp %></span>
+				<span class="disc"><%= product.discount %>% off</span>
+			</h5>
+
+			<% if(currentUser && currentUser.cart.items.some(function(cartItem){ 
+				  return cartItem.product._id.equals(product._id); 
+			   })) { %>
+						<a href="/cart"><button class="btn btn-primary">Go to cart</button></a>
+			<% } else { %>
+						<a href="/cart/new/<%= product._id %>/show"><button class="btn btn-primary">Add to cart</button></a>
+			<% } %>
+
+			<div class="card my-5">
+				<div class="card-body">
+					<div class="float-right">
+						<a href="/products/<%= product._id %>/reviews/new" class="btn btn-success">Leave a Review</a>
+					</div>
+					<h4>Customer Reviews</h4>
+					<% product.reviews.forEach(function(review){ %>
+						<hr>
+						<div class="float-right opac"><%= review.user %>, <%= review.date.toDateString() %></div>
+						<h6><%= review.title %></h6>
+						<p><%= review.text %></p>
+						<% if(currentUser && currentUser.username==review.user) { %>
+							<div>
+								<a href="/products/<%= product._id %>/reviews/<%= review._id %>/edit"><button class="btn btn-sm btn-warning">Edit</button></a>
+								<form action="/products/<%= product._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="d-inline-block">
+									<button class="btn btn-sm btn-danger">Remove</button>
+								</form>
+							</div>
+						<% } %>
+					<% }); %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

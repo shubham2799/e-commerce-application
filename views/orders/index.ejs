@@ -1,0 +1,45 @@
+<%- include("../partials/header") %>
+
+<div class="container ord-ind-div">
+	<% orders.forEach(function(order) { %>
+		<a href="/orders/<%= order._id %>" class="a-order">
+			<div class="border p-3 m-4">
+				<h6 class="float-right"><%= order.date.toDateString() %></h6>
+				<h6>Order No - <%= order.no %></h6>
+				<hr>
+				<div class="row">
+					<div class="col-3">
+						<div class="resp-img order" style="background-image:url('<%= order.checkoutCart.items[0].product.image %>')"></div>
+					</div>
+					<div class="col-9">
+						<div><%= order.checkoutCart.items[0].product.name %></div>
+						<div>
+							₹<%= order.checkoutCart.items[0].product.price %>
+							<span class="mrp mx-2">₹<%= order.checkoutCart.items[0].product.mrp %></span>
+							<span class="disc"><%= order.checkoutCart.items[0].product.discount %>% off</span>
+						</div>
+						<div>Quantity - <%= order.checkoutCart.items[0].qty %></div>
+					</div>
+				</div> 
+				
+				<% if(order.checkoutCart.items.length>1){ %>
+					<hr>
+					<div class="float-right">+ <%= order.checkoutCart.items.length-1 %> more product(s)</div><br>
+				<% } %>
+				<hr>
+				<h6 class="float-right">₹<%= order.checkoutCart.total %></h6>
+				<h6>Order Total</h6>
+			</div>
+		</a>
+	<% }); %>
+
+	<% if(orders.length==0){ %>
+		<div class="text-center screen-center-cart">
+			<img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" class="empty-cart-img">
+			<h5>You haven't placed any orders yet!!</h5>
+			<a href="/products" class="btn btn-success">Start Shopping</a>
+		</div>
+	<% } %>		
+</div>
+
+<%- include("../partials/footer") %>
