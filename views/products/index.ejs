@@ -19,10 +19,10 @@
 						<h5>
 							₹<%= product.price %>
 							<span class="mrp mx-2">₹<%= product.mrp %></span>
-							<span class="disc"><%= product.discount %>% off</span>
+							<span class="disc"><%= product.disc_perc %>% off</span>
 						</h5>
-						
-						<div>
+
+						<h6>
 							<% if(currentUser && currentUser.cart.items.some(function(cartItem){ 
 								  return cartItem.product._id.equals(product._id); 
 							   })) { %>
@@ -30,9 +30,8 @@
 							<% } else { %>
 										<a href="/cart/new/<%= product._id %>/index"><button class="btn btn-sm btn-primary">Add to cart</button></a>
 							<% } %>
-						</div>
-
-						
+							<span class="disc ml-3">Save ₹<%= product.discount %></span>
+						</h6>						
 					</div>
 				</div>
 			</div>

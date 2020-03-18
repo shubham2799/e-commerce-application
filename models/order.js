@@ -16,12 +16,19 @@ var orderSchema = new mongoose.Schema({
 		items: [
 			{
 				product: {
-					type: mongoose.Schema.Types.ObjectId,
-	         		ref: "Product"
+					id: String,
+					name: String,
+					image: String,
+					mrp: Number,
+					price: Number,
+					disc_perc: Number,
+					discount: Number
 				},
 				qty: Number
 			}
 		],
+		cart_total: Number,
+		discount: Number,
 		total: Number
 	},
 	user: {

@@ -16,8 +16,9 @@
 						<div>
 							₹<%= order.checkoutCart.items[0].product.price %>
 							<span class="mrp mx-2">₹<%= order.checkoutCart.items[0].product.mrp %></span>
-							<span class="disc"><%= order.checkoutCart.items[0].product.discount %>% off</span>
+							<span class="disc"><%= order.checkoutCart.items[0].product.disc_perc %>% off</span>
 						</div>
+						<div class="disc">You Saved ₹<%= order.checkoutCart.items[0].product.discount %></div>
 						<div>Quantity - <%= order.checkoutCart.items[0].qty %></div>
 					</div>
 				</div> 
@@ -28,7 +29,7 @@
 				<% } %>
 				<hr>
 				<h6 class="float-right">₹<%= order.checkoutCart.total %></h6>
-				<h6>Order Total</h6>
+				<h6>Total Payable</h6>
 			</div>
 		</a>
 	<% }); %>

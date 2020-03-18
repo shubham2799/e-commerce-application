@@ -5,6 +5,7 @@ var productSchema = new mongoose.Schema({
 	image: String,
 	mrp: Number,
 	price: Number,
+	disc_perc: Number,
 	discount: Number,
 	reviews: [
 		{

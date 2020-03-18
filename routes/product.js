@@ -19,7 +19,8 @@ router.get("/products/new",isAdmin,function(req,res){
 });
 
 router.post("/products",isAdmin,function(req,res){
-	req.body.product.discount = Math.round(((req.body.product.mrp-req.body.product.price)*100)/req.body.product.mrp);
+	req.body.product.discount = req.body.product.mrp-req.body.product.price;
+	req.body.product.disc_perc = Math.round(((req.body.product.mrp-req.body.product.price)*100)/req.body.product.mrp);
 	Product.create(req.body.product,function(err,product){
 		if(err){
 			req.flash("error","Something went wrong!!");
@@ -54,6 +55,8 @@ router.get("/products/:id/edit",isAdmin,function(req,res){
 });
 
 router.put("/products/:id",isAdmin,function(req,res){
+	req.body.product.discount = req.body.product.mrp-req.body.product.price;
+	req.body.product.disc_perc = Math.round(((req.body.product.mrp-req.body.product.price)*100)/req.body.product.mrp);
 	Product.findById(req.params.id,function(err,product) {
 		if(err || !product) {
 			req.flash("error","Product not found!!");
@@ -67,6 +70,8 @@ router.put("/products/:id",isAdmin,function(req,res){
 					users.forEach(function(user) {
 						for (var i = user.cart.items.length - 1; i >= 0; i--) {
 							if(user.cart.items[i].product._id.equals(req.params.id)) {
+								user.cart.cart_total+=((req.body.product.mrp-product.mrp)*user.cart.items[i].qty);
+								user.cart.discount+=((req.body.product.discount-product.discount)*user.cart.items[i].qty);
 								user.cart.total+=((req.body.product.price-product.price)*user.cart.items[i].qty);
 								break;
 							}
@@ -77,7 +82,6 @@ router.put("/products/:id",isAdmin,function(req,res){
 			});
 		}
 	});
-	req.body.product.discount = Math.round(((req.body.product.mrp-req.body.product.price)*100)/req.body.product.mrp);
 	Product.findByIdAndUpdate(req.params.id,req.body.product,function(err,product){
 		if(err || !product) {
 			req.flash("error","Product not found!!");
@@ -103,7 +107,9 @@ router.delete("/products/:id",isAdmin,function(req,res){
 					users.forEach(function(user) {
 						for (var i = user.cart.items.length - 1; i >= 0; i--) {
 							if(user.cart.items[i].product._id.equals(req.params.id)) {
-								user.cart.total-=product.price;
+								user.cart.cart_total-=(product.mrp*user.cart.items[i].qty);
+								user.cart.discount-=(product.discount*user.cart.items[i].qty);
+								user.cart.total-=(product.total*user.cart.items[i].qty);
 								user.cart.items.splice(i,1);
 								break;
 							}

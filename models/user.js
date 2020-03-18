@@ -14,6 +14,8 @@ var userSchema = new mongoose.Schema({
 				qty: Number
 			}
 		],
+		cart_total: {type: Number, default: 0},
+		discount: {type: Number, default: 0},
 		total: {type: Number, default: 0}
 	},
 	orders: [

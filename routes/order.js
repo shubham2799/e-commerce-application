@@ -8,12 +8,7 @@ router.get("/order/:id/success",function(req,res){
 });
 
 router.get("/orders",isLoggedIn,function(req,res){
-	User.findById(req.user._id).populate({
-    	path : 'orders',
-    	populate : {
-      		path : 'checkoutCart.items.product'
-    	}
-    }).exec(function(err,user){
+	User.findById(req.user._id).populate('orders').exec(function(err,user){
 		if(err || !user) {
 			req.flash("error","Something went wrong!!");
 			res.redirect("/products");
@@ -24,7 +19,7 @@ router.get("/orders",isLoggedIn,function(req,res){
 });
 
 router.get("/orders/:id",isLoggedIn,function(req,res){
-	Order.findById(req.params.id).populate('checkoutCart.items.product').exec(function(err,order){
+	Order.findById(req.params.id,function(err,order){
 		if(err || !order) {
 			req.flash("error","Order not found!!");
 			res.redirect("/products");

@@ -27,9 +27,18 @@
 				<input type="text" name="address[pin]" placeholder="Pin Code" class="form-control">
 			</div>
 		</div>
-		<div class="my-4">
-			<h5 class="float-right">Total Payable : ₹<%=user.cart.total%></h5>
-			<h5>Payment Method : COD</h5>
+		<div class="row mt-4">
+			<div class="col-lg-6">
+				<h6>Payment Method: COD</h6>
+			</div>
+			<div class="col-lg-6">
+				<h6 class="float-right">₹<%=user.cart.cart_total%></h6>
+				<h6>Cart Total</h6>
+				<h6 class="float-right disc">(-)₹<%=user.cart.discount%></h6>
+				<h6 class="disc">Discount</h6>
+				<h6 class="float-right">₹<%=user.cart.total%></h6>
+				<h6>Total Payable</h6>
+			</div>
 		</div>
 		<button class="btn btn-success float-right">Place Order</button>
 	</form>

@@ -10,19 +10,20 @@
 					<hr>
 					<div class="row">
 						<div class="col-3">
-							<a href="/products/<%= cartItem.product._id %>">
+							<a href="/products/<%= cartItem.product.id %>">
 								<div class="resp-img order" style="background-image:url('<%= cartItem.product.image %>')"></div>
 							</a>
 						</div>
 						<div class="col-9">
-							<a href="/products/<%= cartItem.product._id %>">
+							<a href="/products/<%= cartItem.product.id %>">
 								<div class="a"><%= cartItem.product.name %></div>
 							</a>
 							<div>
 								₹<%= cartItem.product.price %>
 								<span class="mrp mx-2">₹<%= cartItem.product.mrp %></span>
-								<span class="disc"><%= cartItem.product.discount %>% off</span>
+								<span class="disc"><%= cartItem.product.disc_perc %>% off</span>
 							</div>
+							<div class="disc">You Saved ₹<%= cartItem.product.discount %></div>
 							<div>Quantity - <%= cartItem.qty %></div>
 						</div>
 					</div> 
@@ -39,8 +40,12 @@
 				<div><%= order.address.pin %></div>
 				<div>Phone Number: <%= order.contactNo %></div>
 				<hr>
-				<h6 class="float-right">₹<%= order.checkoutCart.total %></h6>
-				<h6>Total Amount</h6>
+				<h6 class="float-right">₹<%=order.checkoutCart.cart_total%></h6>
+				<h6>Order Total</h6>
+				<h6 class="float-right disc">(-)₹<%=order.checkoutCart.discount%></h6>
+				<h6 class="disc">Discount</h6>
+				<h6 class="float-right">₹<%=order.checkoutCart.total%></h6>
+				<h6>Total Payable</h6>
 				<div>Payment Method: <%= order.paymentMode %></div>
 			</div>
 		</div>

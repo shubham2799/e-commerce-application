@@ -14,6 +14,8 @@ router.get("/cart/new/:id/:return",inCart,function(req,res){
 			req.flash("error","Product not found!!");
 			res.redirect("/products");
 		} else {
+			req.user.cart.cart_total+=product.mrp;
+			req.user.cart.discount+=product.discount;
 			req.user.cart.total+=product.price;
 			req.user.save();
 		}
@@ -47,13 +49,19 @@ router.get("/cart/:id/:action",isLoggedIn,function(req,res){
 				var cartItem = user.cart.items[i];
 				if(cartItem.product._id.equals(req.params.id)){
 					if(req.params.action=='rem') {
+						user.cart.cart_total-=(cartItem.product.mrp*cartItem.qty);
+						user.cart.discount-=(cartItem.product.discount*cartItem.qty);
 						user.cart.total-=(cartItem.product.price*cartItem.qty);
 						user.cart.items.splice(i,1);
 					} else {
 						if(req.params.action=='inc'){
+							user.cart.cart_total+=cartItem.product.mrp;
+							user.cart.discount+=cartItem.product.discount;
 							user.cart.total+=cartItem.product.price;
 							cartItem.qty++;
 						} else if(req.params.action=='dec') {
+							user.cart.cart_total-=cartItem.product.mrp;
+							user.cart.discount-=cartItem.product.discount;
 							user.cart.total-=cartItem.product.price;
 							cartItem.qty--;
 							if(cartItem.qty==0) {
