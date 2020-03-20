@@ -5,26 +5,26 @@
 	<form action="/checkout" method="POST" >
 		<div class="row my-3">
 			<div class="col-lg-7 mb-3 mb-lg-0">
-				<input type="text" name="name" placeholder="Full Name" class="form-control">
+				<input type="text" name="name" placeholder="Full Name" class="form-control" required>
 			</div>
 			<div class="col-lg-5 mb-3 mb-lg-0">
-				<input type="text" name="contactNo" placeholder="Mobile No" class="form-control">
+				<input type="number" name="contactNo" placeholder="Mobile No" class="form-control" required>
 			</div>
 		</div>
 		<div class="row my-3">
 			<div class="col mb-3 mb-lg-0">
-				<input type="text" name="address[addr]" placeholder="Street/Area/Locality" class="form-control">
+				<input type="text" name="address[addr]" placeholder="Street/Area/Locality" class="form-control" required>
 			</div>
 		</div>
 		<div class="row my-3">
 			<div class="col-lg-4 mb-3 mb-lg-0">
-				<input type="text" name="address[city]" placeholder="City" class="form-control">
+				<input type="text" name="address[city]" placeholder="City" class="form-control" required>
 			</div>
 			<div class="col-lg-4 mb-3 mb-lg-0">
-				<input type="text" name="address[state]" placeholder="State" class="form-control">
+				<input type="text" name="address[state]" placeholder="State" class="form-control" required>
 			</div>
 			<div class="col-lg-4 mb-3 mb-lg-0">
-				<input type="text" name="address[pin]" placeholder="Pin Code" class="form-control">
+				<input type="number" name="address[pin]" placeholder="Pin Code" class="form-control" required>
 			</div>
 		</div>
 		<div class="row mt-4">
