@@ -3,7 +3,7 @@
 <div class="container ord-show-div">
 	<div class="row">
 		<div class="col-md-7">
-			<div class="border my-4 p-2 p-lg-3">
+			<div class="border my-4 px-2 px-md-3 py-3">
 				<h6 class="float-right"><%= order.date.toDateString() %></h6>
 				<h6>Order No - <%= order.no %></h6>
 				<% order.checkoutCart.items.forEach(function(cartItem){ %>
@@ -33,8 +33,8 @@
 			</div>
 		</div>
 		<div class="col-md-5">
-			<div class="border mb-4 mt-md-4 p-2 p-lg-3">
-				<h6>Shipping Details</h6>
+			<div class="border mb-4 mt-md-4 px-2 px-md-3 py-3">
+				<h5>Shipping Details</h5>
 				<hr>
 				<h6><%= order.name %></h6>
 				<div><%= order.address.addr %></div>

@@ -31,13 +31,16 @@
 			<div class="col-md-5 mb-3">
 				<h6>Payment Method: COD</h6>
 			</div>
-			<div class="col-md-7">
-				<h6 class="float-right">₹<%=user.cart.cart_total%></h6>
+			<div class="col-md-7 ">
+				<div class="border p-3">
+					<h6 class="float-right">₹<%=user.cart.cart_total%></h6>
 				<h6>Cart Total</h6>
 				<h6 class="float-right disc">(-)₹<%=user.cart.discount%></h6>
 				<h6 class="disc">Discount</h6>
 				<h6 class="float-right">₹<%=user.cart.total%></h6>
 				<h6>Total Payable</h6>
+				</div>
+				
 			</div>
 		</div>
 		<button class="btn btn-success float-right">Place Order</button>

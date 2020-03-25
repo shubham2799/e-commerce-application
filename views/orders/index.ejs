@@ -3,7 +3,7 @@
 <div class="container ord-ind-div">
 	<% orders.forEach(function(order) { %>
 		<a href="/orders/<%= order._id %>" class="a-order">
-			<div class="border p-2 p-md-3 my-4">
+			<div class="border px-2 px-md-3 py-3 my-4">
 				<h6 class="float-right ml-2"><%= order.date.toDateString() %></h6>
 				<h6>Order No - <%= order.no %></h6>
 				<hr>
