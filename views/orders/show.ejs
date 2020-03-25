@@ -2,8 +2,8 @@
 
 <div class="container ord-show-div">
 	<div class="row">
-		<div class="col-lg-7">
-			<div class="border m-4 p-3">
+		<div class="col-md-7">
+			<div class="border my-4 p-2 p-lg-3">
 				<h6 class="float-right"><%= order.date.toDateString() %></h6>
 				<h6>Order No - <%= order.no %></h6>
 				<% order.checkoutCart.items.forEach(function(cartItem){ %>
@@ -16,22 +16,24 @@
 						</div>
 						<div class="col-9">
 							<a href="/products/<%= cartItem.product.id %>">
-								<div class="a"><%= cartItem.product.name %></div>
+								<div class="a mb-2"><%= cartItem.product.name %></div>
 							</a>
-							<div>
-								₹<%= cartItem.product.price %>
-								<span class="mrp mx-2">₹<%= cartItem.product.mrp %></span>
-								<span class="disc"><%= cartItem.product.disc_perc %>% off</span>
-							</div>
-							<div class="disc">You Saved ₹<%= cartItem.product.discount %></div>
-							<div>Quantity - <%= cartItem.qty %></div>
+							<h6>
+								<span class="mr-1">₹<%= cartItem.product.price %></span>
+								<span class="nowrap">
+									<span class="mrp mr-1">₹<%= cartItem.product.mrp %></span>
+									<span class="disc"><%= cartItem.product.disc_perc %>% off</span>
+								</span>
+								<div class="disc nowrap">You Saved ₹<%= cartItem.product.discount %></div>
+							</h6>
+							<div class="nowrap">Quantity - <%= cartItem.qty %></div>
 						</div>
 					</div> 
 				<% }); %>
 			</div>
 		</div>
-		<div class="col-lg-5">
-			<div class="border m-4 p-3">
+		<div class="col-md-5">
+			<div class="border mb-4 mt-md-4 p-2 p-lg-3">
 				<h6>Shipping Details</h6>
 				<hr>
 				<h6><%= order.name %></h6>
@@ -46,7 +48,7 @@
 				<h6 class="disc">Discount</h6>
 				<h6 class="float-right">₹<%=order.checkoutCart.total%></h6>
 				<h6>Total Payable</h6>
-				<div>Payment Method: <%= order.paymentMode %></div>
+				<h6>Payment Method: <%= order.paymentMode %></h6>
 			</div>
 		</div>
 	</div>

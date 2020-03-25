@@ -3,8 +3,8 @@
 <div class="container ord-ind-div">
 	<% orders.forEach(function(order) { %>
 		<a href="/orders/<%= order._id %>" class="a-order">
-			<div class="border p-3 m-4">
-				<h6 class="float-right"><%= order.date.toDateString() %></h6>
+			<div class="border p-2 p-md-3 my-4">
+				<h6 class="float-right ml-2"><%= order.date.toDateString() %></h6>
 				<h6>Order No - <%= order.no %></h6>
 				<hr>
 				<div class="row">
@@ -12,14 +12,20 @@
 						<div class="resp-img order" style="background-image:url('<%= order.checkoutCart.items[0].product.image %>')"></div>
 					</div>
 					<div class="col-9">
-						<div><%= order.checkoutCart.items[0].product.name %></div>
-						<div>
-							₹<%= order.checkoutCart.items[0].product.price %>
-							<span class="mrp mx-2">₹<%= order.checkoutCart.items[0].product.mrp %></span>
-							<span class="disc"><%= order.checkoutCart.items[0].product.disc_perc %>% off</span>
+						<div class="mb-2">
+							<%= order.checkoutCart.items[0].product.name.substring(0,50) %><% if(order.checkoutCart.items[0].product.name.length>50) { %>&nbsp...<% } %>
 						</div>
-						<div class="disc">You Saved ₹<%= order.checkoutCart.items[0].product.discount %></div>
-						<div>Quantity - <%= order.checkoutCart.items[0].qty %></div>
+
+						<h6>
+							<span class="mr-1">₹<%= order.checkoutCart.items[0].product.price %></span>
+							<span class="nowrap">
+								<span class="mrp mr-1">₹<%= order.checkoutCart.items[0].product.mrp %></span>
+								<span class="disc"><%= order.checkoutCart.items[0].product.disc_perc %>% off</span>
+							</span>
+							<div class="disc nowrap">You Saved ₹<%= order.checkoutCart.items[0].product.discount %></div>
+						</h6>
+
+						<div class="nowrap">Quantity - <%= order.checkoutCart.items[0].qty %></div>
 					</div>
 				</div> 
 				

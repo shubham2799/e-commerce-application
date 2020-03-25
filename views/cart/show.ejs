@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
 
 <div class="container cart-show">
-	<div class="border px-3 pt-0">
+	<div class="border px-2 px-lg-3 pt-0">
 		<% user.cart.items.forEach(function(cartItem){ %>
 			<div class="mb-3">	
 				<hr class="mt-0">
@@ -13,26 +13,34 @@
 					</div>
 					<div class="col-9">
 						<a href="/products/<%= cartItem.product._id %>">
-							<div class="a"><%= cartItem.product.name %></div>
+							<div class="a mb-2">
+								<%= cartItem.product.name.substring(0,50) %><% if(cartItem.product.name.length>50) { %>&nbsp...<% } %>
+							</div>
 						</a>
-						<div>
-							₹<%= cartItem.product.price %>
-							<span class="mrp mx-2">₹<%= cartItem.product.mrp %></span>
-							<span class="disc"><%= cartItem.product.disc_perc %>% off</span>
-						</div>
-						<div class="disc">You Save ₹<%= cartItem.product.discount %></div>
-						<div class="float-right">
+
+						<h6>
+							<span class="mr-1">₹<%= cartItem.product.price %></span>
+							<span class="nowrap">
+								<span class="mrp mr-1">₹<%= cartItem.product.mrp %></span>
+								<span class="disc"><%= cartItem.product.disc_perc %>% off</span>
+							</span>
+							<div class="disc nowrap">You Save ₹<%= cartItem.product.discount %></div>
+						</h6>
+
+						<div class="float-right ml-2">
 							<a href="/cart/<%= cartItem.product._id %>/rem">Remove</a> 
 						</div>
 						<div>
 							Quantity 
-							<a href="/cart/<%= cartItem.product._id %>/dec">
-								<i class="fas fa-minus-circle"></i>
-							</a> 
-							<%= cartItem.qty %> 
-							<a href="/cart/<%= cartItem.product._id %>/inc">
-								<i class="fas fa-plus-circle"></i>
-							</a>
+							<span class="nowrap">
+								<a href="/cart/<%= cartItem.product._id %>/dec">
+									<i class="fas fa-minus-circle"></i>
+								</a> 
+								<%= cartItem.qty %> 
+								<a href="/cart/<%= cartItem.product._id %>/inc">
+									<i class="fas fa-plus-circle"></i>
+								</a>
+							</span>
 						</div>
 					</div>
 				</div> 

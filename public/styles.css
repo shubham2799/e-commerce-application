@@ -52,14 +52,19 @@ a:hover {
 
 .screen-center-conf {
 	position: absolute; 
-	top: 35%; 
-	left: 30%;
+	top: 50%; 
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -150px;
 }
 
 .screen-center-cart {
 	position: absolute; 
-	top: 30%; 
-	left: 40%;
+	top: 50%; 
+	left: 50%;
+	margin-top: -110px;
+	margin-left: -150px;
+
 }
 
 .empty-cart-img {
@@ -92,4 +97,12 @@ a:hover {
 .disc {
 	color: green;
 	font-size: 0.8em;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.navbar .navbar-nav .dropdown .dropdown-menu .dropdown-item:hover {
+  color: #007bff;
 }
