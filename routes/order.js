@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require("../models/user");
 var Order = require("../models/order");
 
-router.get("/order/:id/success",function(req,res){
+router.get("/order/:id/success",isLoggedIn,function(req,res){
    	res.render("cart/confirmation",{id: req.params.id});
 });
 
