@@ -30,6 +30,7 @@
 						<div class="float-right ml-2">
 							<a href="/cart/<%= cartItem.product._id %>/rem">Remove</a> 
 						</div>
+						
 						<div>
 							Quantity 
 							<span class="nowrap">
@@ -48,7 +49,7 @@
 		<% }); %>
 	</div>
 	<% if(user.cart.items.length>0){ %>
-		<div class="border p-3 my-4">
+		<div class="border pt-3 pb-2 px-3 my-4">
 			<h6 class="float-right">₹<%=user.cart.cart_total%></h6>
 			<h6>Cart Total</h6>
 			<h6 class="float-right disc">(-)₹<%=user.cart.discount%></h6>

@@ -16,6 +16,7 @@
 						<a href="/products/<%= product._id %>">
 							<div class="card-title a"><%= product.name.substring(0,50) %><% if(product.name.length>50) { %>&nbsp...<% } %></div>
 						</a>
+						
 						<h6>
 							<span class="mr-1">₹<%= product.price %></span>
 							<span class="nowrap">
@@ -28,9 +29,9 @@
 							<% if(currentUser && currentUser.cart.items.some(function(cartItem){ 
 								  return cartItem.product._id.equals(product._id); 
 							   })) { %>
-										<a href="/cart"><button class="btn btn-sm btn-primary mr-1">Go to cart</button></a>
+										<a href="/cart"><button class="btn btn-sm btn-primary mr-md-1">Go to cart</button></a>
 							<% } else { %>
-										<a href="/cart/new/<%= product._id %>/index"><button class="btn btn-sm btn-primary mr-1">Add to cart</button></a>
+										<a href="/cart/new/<%= product._id %>/index"><button class="btn btn-sm btn-primary mr-md-1">Add to cart</button></a>
 							<% } %>
 							<span class="nowrap disc">Save ₹<%= product.discount %></span>
 						</h6>						

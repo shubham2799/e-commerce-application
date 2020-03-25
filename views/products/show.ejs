@@ -7,6 +7,7 @@
 		</div>
 		<div class="col-md-7">
 			<h5><%= product.name %></h5>
+
 			<% if(currentUser && currentUser.username=='admin') { %>
 				<div class="my-3">
 					<a href="/products/<%= product._id %>/edit"><button class="btn btn-sm btn-warning">Edit</button></a>
@@ -15,10 +16,12 @@
 					</form>
 				</div>
 			<% } %>
+
 			<div class="card p-3 my-4">
 				<h6>Description</h6>
 				<p>This will be the product description.</p>
 			</div>
+			
 			<h5>
 				<span class="mr-1">₹<%= product.price %></span>
 				<span class="nowrap">
